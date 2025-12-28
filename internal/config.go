@@ -13,8 +13,7 @@ type Project struct {
 }
 
 type Generation struct {
-	Style      string `toml:"style"`
-	Typescript bool   `toml:"typescript"`
+	Typescript bool `toml:"typescript"`
 }
 
 type Files struct {
