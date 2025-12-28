@@ -1,0 +1,52 @@
+name: Release
+on:
+  release:
+    types: [published]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux, darwin, windows]
+        goarch: [amd64, arm64]
+        exclude:
+          - goos: windows
+            goarch: arm64
+    steps:
+      - name: Checkout latest commit
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+      - name: Build binary
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: |
+          mkdir -p release
+          NAME=jaxon
+
+          if [ "${{ matrix.goos }}" = "windows" ]; then
+            NAME="$NAME.exe"
+          fi
+
+          go build -trimpath -ldflags="-s -w" -o release/$NAME
+      - name: Package
+        run: |
+          cd dist
+          for f in *; do
+            if [[ "$f" == *.exe ]]; then
+              zip "$f.zip" "$f"
+            else
+              tar -czf "$f.tar.gz" "$f"
+            fi
+          done
+      - name: Upload artifacts to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*

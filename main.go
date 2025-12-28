@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/studio713/jaxon/cmd"
+	"github.com/Studio713/jaxon/cmd"
 )
 
 func main() {

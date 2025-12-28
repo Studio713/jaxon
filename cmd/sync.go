@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"sync"
 
+	"github.com/Studio713/jaxon/internal"
 	"github.com/spf13/cobra"
-	"github.com/studio713/jaxon/internal"
 )
 
 const maxWorkers = 5
