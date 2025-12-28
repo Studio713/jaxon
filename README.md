@@ -21,6 +21,11 @@ You will need to create an [API key](https://create.roblox.com/dashboard/credent
 - `game-pass:write`
 - `game-pass:read`
 
+then create a `.env` file in the root directory and write:
+```
+JAXON_API_KEY=APIKEY
+```
+
 ## Commands
 
 ### `sync`
