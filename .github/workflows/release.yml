@@ -20,7 +20,7 @@ jobs:
         with:
           ref: main
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: "1.24"
       - name: Build binary
@@ -29,7 +29,8 @@ jobs:
           GOARCH: ${{ matrix.goarch }}
         run: |
           mkdir -p release
-          NAME=jaxon
+
+          NAME=jaxon-${{ matrix.goos }}-${{ matrix.goarch }}
 
           if [ "${{ matrix.goos }}" = "windows" ]; then
             NAME="$NAME.exe"
@@ -40,11 +41,8 @@ jobs:
         run: |
           cd release
           for f in *; do
-            if [[ "$f" == *.exe ]]; then
-              zip "$f.zip" "$f"
-            else
-              tar -czf "$f.tar.gz" "$f"
-            fi
+            zip "${f%.exe}.zip" "$f"
+            rm "$f"
           done
       - name: Upload artifacts to release
         uses: softprops/action-gh-release@v2
