@@ -12,8 +12,9 @@ pub struct ProductJson {
     pub product_type: String,
     pub image: String,
     pub price: i64,
+    #[serde(rename = "regionalPricing")]
     pub regional_pricing: bool,
-    #[serde(rename = "product_id")]
+    #[serde(rename = "productId")]
     pub id: i64,
 }
 

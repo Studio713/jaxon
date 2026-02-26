@@ -22,7 +22,7 @@ pub struct Product {
 pub struct ProductResponse {
     pub product_id: i64,
     pub name: String,
-    pub icon_image_asset_id: i64,
+    pub icon_image_asset_id: Option<i64>,
 }
 
 #[derive(Deserialize, Debug)]
@@ -30,7 +30,7 @@ pub struct ProductResponse {
 pub struct GamepassResponse {
     pub game_pass_id: i64,
     pub name: String,
-    pub icon_asset_id: i64,
+    pub icon_asset_id: Option<i64>,
 }
 
 pub fn gamepass_url(universe_id: i64) -> String {

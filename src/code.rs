@@ -41,9 +41,9 @@ fn generate_luau(
     out.push_str("\t},\n");
     out.push_str("\tProductsById = {},\n");
     out.push_str("\tGamepassesById = {},\n");
-    out.push_str("},\n");
+    out.push_str("}\n");
     out.push_str("\nfor _,product in Products.Products do\n\t\tProducts.ProductsById[product.Id] = product\nend\n");
-    out.push_str("\nfor _,gamepass in Products.Gamepasses do\n\t\tGamepasses.GamepassesById[gamepass.Id] = gamepass\nend\n");
+    out.push_str("\nfor _,gamepass in Products.Gamepasses do\n\t\tProducts.GamepassesById[gamepass.Id] = gamepass\nend\n");
     out.push_str("\nreturn Products");
 
     out
