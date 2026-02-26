@@ -1,8 +1,0 @@
-[project]
-universe_id = 7692375193
-
-[generation]
-typescript = false
-
-[files]
-output = "src/Shared/Products.luau"
